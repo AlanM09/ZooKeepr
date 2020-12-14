@@ -102,7 +102,7 @@ app.get('/api/animals/:id', (req, res) => {
 app.post('/api/animals', (req, res) => {
   // set id based on what th enext index of the array will be  req.body.id = animals.length.toString();
   req.body.id = animals.length.toString();
-  
+
   // if any data in req.body is incorrect, send 400 error back
   if (!validateAnimal(req.body)) {
     res.status(400).send('The animal is not properly formatted.');
@@ -112,6 +112,10 @@ app.post('/api/animals', (req, res) => {
 
     res.json(animal);
   }
+  });
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
   });
 
 app.listen(PORT, () => {
